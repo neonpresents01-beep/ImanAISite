@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImanAccount | نرم‌افزار حسابداری هوشمند</title>
+    <meta name="description" content="نرم‌افزار حسابداری هوشمند ایرانی — سریع، مدرن، ارزان">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1976D2;
+            --primary-dark: #0d47a1;
+            --primary-light: #42a5f5;
+            --accent: #00BCD4;
+            --accent-light: #4dd0e1;
+            --dark: #0a1929;
+            --dark-2: #1a2332;
+            --dark-3: #2c3e50;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            
+            --gradient-1: linear-gradient(135deg, #1976D2 0%, #00BCD4 100%);
+            --gradient-2: linear-gradient(135deg, #0a1929 0%, #1a2332 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 50px rgba(25,118,210,0.25);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+            background: var(--off-white);
+            color: var(--dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        /* ============================================
+           UTILITIES
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-lg {
+            padding: 18px 42px;
+            font-size: 18px;
+        }
+        
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(25, 118, 210, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            padding: 8px 16px;
+            color: var(--dark-3);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(25, 118, 210, 0.08);
+        }
+        
+        .nav-cta {
+            background: var(--gradient-1) !important;
+            color: var(--white) !important;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            padding: 140px 0 80px;
+            background: var(--gradient-2);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(25, 118, 210, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.05); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 14px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            line-height: 1.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .hero-buttons .btn-outline {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-buttons .btn-outline:hover {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hero-stat .number {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-stat .label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-logo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 50%;
+            box-shadow: 0 0 80px rgba(25, 118, 210, 0.5);
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* ============================================
+           SECTION BASE
+           ============================================ */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(25, 118, 210, 0.1);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--gray);
+        }
+        
+        /* ============================================
+           FEATURES
+           ============================================ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(25, 118, 210, 0.08);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(25, 118, 210, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        /* ============================================
+           COMPARISON
+           ============================================ */
+        .comparison {
+            background: var(--dark-2);
+            color: var(--white);
+        }
+        
+        .comparison .section-title {
+            color: var(--white);
+        }
+        
+        .comparison .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .comparison .section-badge {
+            background: rgba(0, 188, 212, 0.15);
+            color: var(--accent-light);
+        }
+        
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px 24px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            font-size: 15px;
+        }
+        
+        .comparison-table th:first-child {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .comparison-table th.us {
+            background: rgba(25, 118, 210, 0.2);
+            color: var(--accent-light);
+            position: relative;
+        }
+        
+        .comparison-table th.us::after {
+            content: '★';
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            color: var(--accent);
+            font-size: 12px;
+        }
+        
+        .comparison-table td {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .comparison-table td.us {
+            background: rgba(25, 118, 210, 0.1);
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .check { color: var(--success); font-weight: bold; }
+        .cross { color: var(--danger); }
+        
+        /* ============================================
+           PRICING
+           ============================================ */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid rgba(25, 118, 210, 0.1);
+            border-radius: 24px;
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-xl);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -14px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+        }
+        
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .pricing-card .plan-desc {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-price .amount {
+            font-size: 36px;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .pricing-price .currency {
+            font-size: 16px;
+            color: var(--gray);
+            font-weight: 600;
+        }
+        
+        .pricing-price .period {
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--dark-3);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(39, 174, 96, 0.12);
+            color: var(--success);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .pricing-features li.disabled {
+            color: var(--gray-light);
+        }
+        
+        .pricing-features li.disabled::before {
+            content: '✕';
+            background: rgba(148, 163, 184, 0.12);
+            color: var(--gray-light);
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        /* ============================================
+           TESTIMONIALS
+           ============================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(25, 118, 210, 0.08);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .stars {
+            color: var(--warning);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-text {
+            color: var(--dark-3);
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        
+        .author-info p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+        
+        /* ============================================
+           CTA
+           ============================================ */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gradient-2);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(25, 118, 210, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 36px;
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.9;
+            max-width: 320px;
+        }
+        
+        .footer h4 {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer ul {
+            list-style: none;
+        }
+        
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer ul a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer ul a:hover {
+            color: var(--accent-light);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .footer-bottom .heart {
+            color: var(--danger);
+        }
+        
+        /* ============================================
+           MOBILE MENU
+           ============================================ */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            right: 0;
+            left: 0;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            padding: 12px 16px;
+            color: var(--dark-3);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            background: rgba(25, 118, 210, 0.08);
+            color: var(--primary);
+        }
+        
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                order: -1;
+            }
+            
+            .hero-logo {
+                max-width: 280px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+        }
+        
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVBAR
+         ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">💼</div>
+                <span class="logo-text">ImanAccount</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#features">ویژگی‌ها</a>
+                <a href="#comparison">مقایسه</a>
+                <a href="#pricing">قیمت‌ها</a>
+                <a href="#testimonials">نظرات</a>
+                <a href="#contact" class="nav-cta">دمو رایگان</a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features">ویژگی‌ها</a>
+        <a href="#comparison">مقایسه</a>
+        <a href="#pricing">قیمت‌ها</a>
+        <a href="#testimonials">نظرات</a>
+        <a href="#contact">دمو رایگان</a>
+    </div>
+
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    <span>نسخه ۳.۰ منتشر شد</span>
+                </div>
+                
+                <h1>
+                    حسابداری هوشمند،
+                    <br>
+                    <span class="gradient-text">برای کسب‌وکار تو</span>
+                </h1>
+                
+                <p>
+                    ImanAccount یه نرم‌افزار حسابداری مدرن، سریع و هوشمنده 
+                    که با AI کار می‌کنه. طراحی شده برای شرکت‌های کوچک و حسابدارهای مستقل.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary btn-lg">
+                        🚀 دمو رایگان
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-lg">
+                        ✨ ویژگی‌ها
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">۵۰+</span>
+                        <span class="label">قابلیت حرفه‌ای</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">۵x</span>
+                        <span class="label">سریع‌تر از هلو</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">۸۰٪</span>
+                        <span class="label">ارزون‌تر</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <img src="https://i.ibb.co/Y7tZ3vVK/logo.jpg" alt="ImanAccount Logo" class="hero-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><text y=%22.9em%22 font-size=%22180%22>💼</text></svg>'">
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FEATURES
+         ============================================ -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✨ ویژگی‌ها</span>
+                <h2 class="section-title">چرا ImanAccount؟</h2>
+                <p class="section-subtitle">
+                    چیزی که نرم‌افزار حسابداریت باید داشته باشه — همه رو یجا داریم
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🤖</div>
+                    <h3>هوش مصنوعی داخلی</h3>
+                    <p>چت‌بات مالی، تحلیل خودکار، پیشنهاد حساب و پیش‌بینی جریان نقدی. بدون نیاز به API خارجی.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>سرعت ۵ برابر</h3>
+                    <p>رابط کاربری مدرن و سبک. هر عملیاتی در کمتر از ۱ ثانیه. بدون معطلی.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📦</div>
+                    <h3>انبارداری چندسطحی</h3>
+                    <p>مدیریت چند انبار، انتقال بین انبارها، سریال‌نمبر، بارکد و روش‌های ارزشیابی FIFO/LIFO.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>حقوق و دستمزد کامل</h3>
+                    <p>محاسبه دقیق حقوق، بیمه، مالیات، اضافه‌کاری، شب‌کاری، جمعه‌کاری و بیمه بیکاری.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3>گزارشات جامع</h3>
+                    <p>تراز آزمایشی، سود و زیان، ترازنامه، جریان نقدی و نسبت‌های مالی. همه با یک کلیک.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📄</div>
+                    <h3>فاکتور حرفه‌ای</h3>
+                    <p>صدور فاکتور، چاپ PDF با فونت فارسی، خروجی Excel و قالب تصویری قابل تنظیم.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h3>دو تم (روشن/تاریک)</h3>
+                    <p>تغییر آنی بین تم روشن و تاریک. هر چیزی که چشمات راحت‌تره.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔐</div>
+                    <h3>امنیت بالا</h3>
+                    <p>سیستم لایسنس با RSA 4096، رمزنگاری AES-GCM و رمزهای bcrypt. اطلاعات شما امن.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎤</div>
+                    <h3>دستیار صوتی</h3>
+                    <p>با صدات حرف بزن، نرم‌افزار جواب می‌ده. تشخیص فرمان صوتی آفلاین فارسی.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         COMPARISON
+         ============================================ -->
+    <section class="section comparison" id="comparison">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">⚔️ مقایسه</span>
+                <h2 class="section-title">ImanAccount vs هلو</h2>
+                <p class="section-subtitle">
+                    یه مقایسه صادقانه — خودت قضاوت کن
+                </p>
+            </div>
+            
+            <div class="comparison-table fade-in">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ویژگی</th>
+                            <th class="us">ImanAccount</th>
+                            <th>هلو</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>سرعت</td>
+                            <td class="us">⚡ ۵ برابر</td>
+                            <td>🐌 کند</td>
+                        </tr>
+                        <tr>
+                            <td>رابط کاربری</td>
+                            <td class="us">🎨 مدرن (۲۰۲۵)</td>
+                            <td>📟 قدیمی (۲۰۱۰)</td>
+                        </tr>
+                        <tr>
+                            <td>هوش مصنوعی</td>
+                            <td class="us"><span class="check">✓</span> بله</td>
+                            <td><span class="cross">✕</span> ندارد</td>
+                        </tr>
+                        <tr>
+                            <td>دستیار صوتی</td>
+                            <td class="us"><span class="check">✓</span> بله</td>
+                            <td><span class="cross">✕</span> ندارد</td>
+                        </tr>
+                        <tr>
+                            <td>قیمت سالانه</td>
+                            <td class="us">💵 ۱ میلیون تومان</td>
+                            <td>💸 ۵ تا ۲۰ میلیون</td>
+                        </tr>
+                        <tr>
+                            <td>پشتیبانی</td>
+                            <td class="us">🚀 ۲۴/۷ — ۵ دقیقه</td>
+                            <td>😴 ۱-۲ روز</td>
+                        </tr>
+                        <tr>
+                            <td>نصب و راه‌اندازی</td>
+                            <td class="us">✨ ۵ دقیقه</td>
+                            <td>⚙️ پیچیده</td>
+                        </tr>
+                        <tr>
+                            <td>خروجی PDF فارسی</td>
+                            <td class="us"><span class="check">✓</span> بله</td>
+                            <td><span class="cross">✕</span> ناقص</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PRICING
+         ============================================ -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">💰 قیمت‌ها</span>
+                <h2 class="section-title">پلن مناسب خودت رو انتخاب کن</h2>
+                <p class="section-subtitle">
+                    از رایگان شروع کن، هر وقت خواستی ارتقا بده
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="pricing-card fade-in">
+                    <h3>رایگان</h3>
+                    <p class="plan-desc">برای شروع و آشنایی</p>
+                    <div class="pricing-price">
+                        <span class="amount">۰</span>
+                        <span class="currency">تومان</span>
+                        <span class="period">/ همیشه</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>۵۰ فاکتور</li>
+                        <li>۱۰ کالا</li>
+                        <li>۱ انبار</li>
+                        <li>AI چت (۱۰ سوال در روز)</li>
+                        <li>پشتیبانی انجمن</li>
+                        <li class="disabled">حقوق و دستمزد</li>
+                        <li class="disabled">گزارشات پیشرفته</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">شروع رایگان</a>
+                </div>
+                
+                <!-- Starter -->
+                <div class="pricing-card fade-in">
+                    <h3>شروع</h3>
+                    <p class="plan-desc">برای کسب‌وکارهای کوچک</p>
+                    <div class="pricing-price">
+                        <span class="amount">۴۹۰</span>
+                        <span class="currency">هزار تومان</span>
+                        <span class="period">/ سال</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>۵۰۰ فاکتور</li>
+                        <li>۱۰۰ کالا</li>
+                        <li>۳ انبار</li>
+                        <li>مشتری نامحدود</li>
+                        <li>حسابداری کامل</li>
+                        <li>AI چت (۵۰ سوال در روز)</li>
+                        <li>پشتیبانی تیکت</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">انتخاب پلن</a>
+                </div>
+                
+                <!-- Professional -->
+                <div class="pricing-card featured fade-in">
+                    <span class="featured-badge">⭐ پرفروش‌ترین</span>
+                    <h3>حرفه‌ای</h3>
+                    <p class="plan-desc">برای شرکت‌های حرفه‌ای</p>
+                    <div class="pricing-price">
+                        <span class="amount">۹۹۰</span>
+                        <span class="currency">هزار تومان</span>
+                        <span class="period">/ سال</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>فاکتور نامحدود</li>
+                        <li>کالای نامحدود</li>
+                        <li>انبار نامحدود</li>
+                        <li>حقوق و دستمزد کامل</li>
+                        <li>گزارشات پیشرفته</li>
+                        <li>AI کامل (نامحدود)</li>
+                        <li>دستیار صوتی</li>
+                        <li>پشتیبانی ۲۴/۷</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">شروع کن</a>
+                </div>
+                
+                <!-- Enterprise -->
+                <div class="pricing-card fade-in">
+                    <h3>سازمانی</h3>
+                    <p class="plan-desc">برای سازمان‌های بزرگ</p>
+                    <div class="pricing-price">
+                        <span class="amount">۲,۹۹۰</span>
+                        <span class="currency">هزار تومان</span>
+                        <span class="period">/ سال</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>همه چیز حرفه‌ای +</li>
+                        <li>۵ کاربر</li>
+                        <li>۳ شرکت</li>
+                        <li>API اختصاصی</li>
+                        <li>مدیر حساب اختصاصی</li>
+                        <li>آموزش تیم</li>
+                        <li>پشتیبانی اختصاصی</li>
+                        <li>SLA تضمین‌شده</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">تماس بگیرید</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS
+         ============================================ -->
+    <section class="section" id="testimonials" style="background: var(--off-white);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">💬 نظرات</span>
+                <h2 class="section-title">مشتریان ما چی می‌گن</h2>
+                <p class="section-subtitle">
+                    داستان‌های واقعی از کسایی که تجربه کردن
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «۳ ساعت در روز برای فاکتورها وقت می‌ذاشتم. الان ۳۰ دقیقه. 
+                        واقعاً زندگیم راحت‌تر شده.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ا</div>
+                        <div class="author-info">
+                            <h4>آقای احمدی</h4>
+                            <p>مدیر شرکت بازرگانی</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «با هلو کار می‌کردم. پشتیبانی ۲ روز جواب می‌داد. 
+                        اینجا ۵ دقیقه. فرق خیلی زیاده.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">م</div>
+                        <div class="author-info">
+                            <h4>مریم رضایی</h4>
+                            <p>حسابدار مستقل</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «AI داخلیش عالیه. سوال می‌پرسم، جواب می‌ده. 
+                        دیگه لازم نیست تو منوها بگردم.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ر</div>
+                        <div class="author-info">
+                            <h4>رضا محمدی</h4>
+                            <p>صاحب فروشگاه</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CTA
+         ============================================ -->
+    <section class="cta-section" id="contact">
+        <div class="container cta-content">
+            <h2 class="fade-in">
+                همین الان شروع کن
+                <br>
+                <span style="background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">رایگان امتحان کن</span>
+            </h2>
+            <p class="fade-in">
+                ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پول برمی‌گرده.
+            </p>
+            <div class="hero-buttons fade-in" style="justify-content: center;">
+                <a href="tel:09123456789" class="btn btn-primary btn-lg">
+                    📞 تماس با ما
+                </a>
+                <a href="https://t.me/ImanAccount" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">
+                    💬 تلگرام
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">💼</div>
+                        <span class="logo-text" style="background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">ImanAccount</span>
+                    </a>
+                    <p>
+                        نرم‌افزار حسابداری هوشمند ایرانی، ساخته شده با عشق در ایران. 
+                        هدف ما: حسابداری ساده برای همه.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>محصول</h4>
+                    <ul>
+                        <li><a href="#features">ویژگی‌ها</a></li>
+                        <li><a href="#pricing">قیمت‌ها</a></li>
+                        <li><a href="#comparison">مقایسه</a></li>
+                        <li><a href="#contact">دمو رایگان</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>پشتیبانی</h4>
+                    <ul>
+                        <li><a href="#contact">تماس با ما</a></li>
+                        <li><a href="https://t.me/ImanAccount">تلگرام</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">آموزش‌ها</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>شرکت</h4>
+                    <ul>
+                        <li><a href="#">درباره ما</a></li>
+                        <li><a href="#">وبلاگ</a></li>
+                        <li><a href="#">تماس</a></li>
+                        <li><a href="#">قوانین</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    © ۱۴۰۴ ImanAccount — ساخته شده با 
+                    <span class="heart">♥</span> 
+                    در ایران
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCRIPT
+         ============================================ -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Fade In on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        console.log('%c💼 ImanAccount', 'font-size: 24px; font-weight: bold; color: #1976D2;');
+        console.log('%cSmart Accounting, Simplified', 'font-size: 14px; color: #00BCD4;');
+    </script>
+
+</body>
+</html>
