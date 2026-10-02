@@ -3,63 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImanAccount | نرم‌افزار حسابداری هوشمند</title>
-    <meta name="description" content="نرم‌افزار حسابداری هوشمند ایرانی — سریع، مدرن، ارزان">
+    <title>ImanAccount | نرم‌افزار حسابداری هوشمند ایرانی</title>
+    <meta name="description" content="ImanAccount — نرم‌افزار حسابداری هوشمند، سریع، مدرن و ارزان. ۵۰+ قابلیت حرفه‌ای، AI داخلی، پشتیبانی ۲۴/۷. دانلود رایگان.">
+    <meta name="keywords" content="نرم‌افزار حسابداری، حسابداری، انبارداری، حقوق و دستمزد، فاکتور، هلو، سپیدار، محک، AI">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    <link rel="icon" type="image/png" href="logo.png">
     
-    <!-- Font -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="ImanAccount | نرم‌افزار حسابداری هوشمند">
+    <meta property="og:description" content="حسابداری هوشمند برای کسب‌وکار تو. ۵۰+ قابلیت، AI داخلی، پشتیبانی ۲۴/۷">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://imanai.ir/logo.png">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* ============================================
-           RESET & BASE
+           ROOT VARIABLES
            ============================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         :root {
+            /* Colors */
             --primary: #1976D2;
             --primary-dark: #0d47a1;
             --primary-light: #42a5f5;
             --accent: #00BCD4;
             --accent-light: #4dd0e1;
+            
             --dark: #0a1929;
             --dark-2: #1a2332;
             --dark-3: #2c3e50;
+            
             --gray: #64748b;
             --gray-light: #94a3b8;
+            --gray-lighter: #cbd5e1;
+            
             --white: #ffffff;
             --off-white: #f8fafc;
-            --success: #27ae60;
-            --danger: #e74c3c;
-            --warning: #f39c12;
+            --bg: #f5f7fa;
             
+            /* Status */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            
+            /* Gradients */
             --gradient-1: linear-gradient(135deg, #1976D2 0%, #00BCD4 100%);
             --gradient-2: linear-gradient(135deg, #0a1929 0%, #1a2332 100%);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
-            --shadow-xl: 0 20px 50px rgba(25,118,210,0.25);
+            --gradient-3: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 50px rgba(25, 118, 210, 0.25);
+            --shadow-2xl: 0 30px 60px rgba(0, 0, 0, 0.2);
+            
+            /* Radius */
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* ============================================
+           RESET
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
         
         body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
-            background: var(--off-white);
+            background: var(--bg);
             color: var(--dark);
             line-height: 1.8;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+        
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; }
         
         /* ============================================
            UTILITIES
@@ -67,22 +108,63 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(25, 118, 210, 0.1);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 14px 32px;
-            border-radius: 12px;
-            font-family: inherit;
+            border-radius: var(--radius);
             font-size: 16px;
             font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            white-space: nowrap;
         }
         
         .btn-primary {
@@ -92,7 +174,7 @@
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-xl);
         }
         
@@ -105,11 +187,17 @@
         .btn-outline:hover {
             background: var(--primary);
             color: var(--white);
+            transform: translateY(-3px);
         }
         
         .btn-lg {
             padding: 18px 42px;
-            font-size: 18px;
+            font-size: 17px;
+        }
+        
+        .btn-xl {
+            padding: 22px 54px;
+            font-size: 19px;
         }
         
         /* ============================================
@@ -121,15 +209,16 @@
             left: 0;
             right: 0;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(25, 118, 210, 0.1);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .navbar.scrolled {
             box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98);
         }
         
         .nav-container {
@@ -143,20 +232,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            text-decoration: none;
-            color: var(--dark);
         }
         
-        .logo-icon {
+        .logo-img {
             width: 44px;
             height: 44px;
-            background: var(--gradient-1);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            box-shadow: var(--shadow-sm);
         }
         
         .logo-text {
@@ -170,18 +253,17 @@
         
         .nav-links {
             display: flex;
-            gap: 8px;
             align-items: center;
+            gap: 6px;
         }
         
         .nav-links a {
-            padding: 8px 16px;
+            padding: 10px 16px;
             color: var(--dark-3);
-            text-decoration: none;
             font-weight: 500;
             font-size: 15px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
         }
         
         .nav-links a:hover {
@@ -196,7 +278,7 @@
         }
         
         .nav-cta:hover {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
         
@@ -204,8 +286,7 @@
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
-            cursor: pointer;
+            font-size: 26px;
             color: var(--dark);
         }
         
@@ -218,35 +299,38 @@
             color: var(--white);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(25, 118, 210, 0.25) 0%, transparent 70%);
+            top: -30%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(25, 118, 210, 0.3) 0%, transparent 70%);
             border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            animation: float 10s ease-in-out infinite;
         }
         
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -50%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%);
+            bottom: -30%;
+            left: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.25) 0%, transparent 70%);
             border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
+            animation: float 12s ease-in-out infinite reverse;
         }
         
         @keyframes float {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(40px, -40px) scale(1.05); }
         }
         
         .hero-content {
@@ -254,20 +338,21 @@
             z-index: 2;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
+            width: 100%;
         }
         
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
+            gap: 10px;
+            padding: 10px 20px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
+            border-radius: var(--radius-full);
             font-size: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             backdrop-filter: blur(10px);
         }
         
@@ -280,41 +365,36 @@
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
         
         .hero h1 {
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(36px, 5vw, 60px);
             font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-        
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.15;
+            margin-bottom: 28px;
+            letter-spacing: -0.02em;
         }
         
         .hero p {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 32px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
             line-height: 1.9;
+            max-width: 540px;
         }
         
         .hero-buttons {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
         
         .hero-buttons .btn-outline {
             color: var(--white);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .hero-buttons .btn-outline:hover {
@@ -325,7 +405,7 @@
         
         .hero-stats {
             display: flex;
-            gap: 40px;
+            gap: 48px;
             flex-wrap: wrap;
         }
         
@@ -335,7 +415,7 @@
         }
         
         .hero-stat .number {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 900;
             background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%);
             -webkit-background-clip: text;
@@ -348,61 +428,24 @@
             color: rgba(255, 255, 255, 0.6);
         }
         
-        /* Hero Visual */
         .hero-visual {
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         
         .hero-logo {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             border-radius: 50%;
-            box-shadow: 0 0 80px rgba(25, 118, 210, 0.5);
+            box-shadow: 0 0 100px rgba(25, 118, 210, 0.6);
             animation: heroFloat 6s ease-in-out infinite;
         }
         
         @keyframes heroFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        /* ============================================
-           SECTION BASE
-           ============================================ */
-        .section {
-            padding: 100px 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-        
-        .section-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(25, 118, 210, 0.1);
-            color: var(--primary);
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-        
-        .section-title {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 900;
-            margin-bottom: 16px;
-            color: var(--dark);
-        }
-        
-        .section-subtitle {
-            font-size: 17px;
-            color: var(--gray);
+            50% { transform: translateY(-25px); }
         }
         
         /* ============================================
@@ -411,16 +454,16 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            gap: 28px;
         }
         
         .feature-card {
             background: var(--white);
-            padding: 32px;
-            border-radius: 20px;
+            padding: 36px 32px;
+            border-radius: var(--radius-xl);
             border: 1px solid rgba(25, 118, 210, 0.08);
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
@@ -435,11 +478,11 @@
             background: var(--gradient-1);
             transform: scaleX(0);
             transform-origin: right;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
         
@@ -448,15 +491,21 @@
         }
         
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             background: rgba(25, 118, 210, 0.1);
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 30px;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-1);
+            transform: scale(1.1) rotate(5deg);
         }
         
         .feature-card h3 {
@@ -469,7 +518,7 @@
         .feature-card p {
             color: var(--gray);
             font-size: 15px;
-            line-height: 1.8;
+            line-height: 1.9;
         }
         
         /* ============================================
@@ -496,7 +545,7 @@
         .comparison-table {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
@@ -508,7 +557,7 @@
         
         .comparison-table th,
         .comparison-table td {
-            padding: 20px 24px;
+            padding: 22px 28px;
             text-align: right;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -524,7 +573,7 @@
         }
         
         .comparison-table th.us {
-            background: rgba(25, 118, 210, 0.2);
+            background: rgba(25, 118, 210, 0.25);
             color: var(--accent-light);
             position: relative;
         }
@@ -533,7 +582,7 @@
             content: '★';
             position: absolute;
             top: 8px;
-            left: 12px;
+            left: 14px;
             color: var(--accent);
             font-size: 12px;
         }
@@ -557,28 +606,87 @@
         .cross { color: var(--danger); }
         
         /* ============================================
+           HOW IT WORKS
+           ============================================ */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            position: relative;
+        }
+        
+        .step-card {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(25, 118, 210, 0.08);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .step-icon {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+        
+        .step-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .step-card p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+        
+        /* ============================================
            PRICING
            ============================================ */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
+            gap: 28px;
             align-items: stretch;
         }
         
         .pricing-card {
             background: var(--white);
             border: 2px solid rgba(25, 118, 210, 0.1);
-            border-radius: 24px;
-            padding: 36px 28px;
+            border-radius: var(--radius-xl);
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
         }
         
         .pricing-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
         
@@ -589,18 +697,18 @@
         }
         
         .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-8px);
+            transform: scale(1.05) translateY(-10px);
         }
         
         .featured-badge {
             position: absolute;
-            top: -14px;
+            top: -16px;
             right: 50%;
             transform: translateX(50%);
             background: var(--gradient-1);
             color: var(--white);
-            padding: 6px 20px;
-            border-radius: 100px;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
             font-size: 13px;
             font-weight: 700;
             box-shadow: var(--shadow-md);
@@ -608,7 +716,7 @@
         }
         
         .pricing-card h3 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             margin-bottom: 8px;
             color: var(--dark);
@@ -617,19 +725,19 @@
         .pricing-card .plan-desc {
             color: var(--gray);
             font-size: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         
         .pricing-price {
             display: flex;
             align-items: baseline;
-            gap: 6px;
-            margin-bottom: 28px;
+            gap: 8px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
         }
         
         .pricing-price .amount {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
             background: var(--gradient-1);
             -webkit-background-clip: text;
@@ -650,17 +758,17 @@
         
         .pricing-features {
             list-style: none;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             flex-grow: 1;
         }
         
         .pricing-features li {
-            padding: 10px 0;
+            padding: 12px 0;
             color: var(--dark-3);
             font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         
@@ -673,12 +781,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 20px;
-            height: 20px;
-            background: rgba(39, 174, 96, 0.12);
+            width: 22px;
+            height: 22px;
+            background: rgba(16, 185, 129, 0.12);
             color: var(--success);
             border-radius: 50%;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             flex-shrink: 0;
         }
@@ -695,82 +803,74 @@
         
         .pricing-card .btn {
             width: 100%;
-            justify-content: center;
         }
         
         /* ============================================
-           TESTIMONIALS
+           FAQ
            ============================================ */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         
-        .testimonial-card {
+        .faq-item {
             background: var(--white);
-            padding: 28px;
-            border-radius: 20px;
-            border: 1px solid rgba(25, 118, 210, 0.08);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(25, 118, 210, 0.1);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
         }
         
-        .testimonial-card:hover {
-            transform: translateY(-4px);
+        .faq-item:hover {
             box-shadow: var(--shadow-md);
         }
         
-        .stars {
-            color: var(--warning);
-            font-size: 18px;
-            margin-bottom: 16px;
+        .faq-question {
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark);
+            user-select: none;
         }
         
-        .testimonial-text {
-            color: var(--dark-3);
+        .faq-icon {
+            font-size: 24px;
+            color: var(--primary);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 28px;
+            color: var(--gray);
             font-size: 15px;
             line-height: 1.9;
-            margin-bottom: 20px;
-            font-style: italic;
         }
         
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .author-avatar {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 800;
-            font-size: 18px;
-        }
-        
-        .author-info h4 {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 2px;
-        }
-        
-        .author-info p {
-            font-size: 13px;
-            color: var(--gray);
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 28px 24px;
         }
         
         /* ============================================
-           CTA
+           CTA SECTION
            ============================================ */
         .cta-section {
-            padding: 100px 0;
+            padding: 120px 0;
             background: var(--gradient-2);
             color: var(--white);
             text-align: center;
@@ -784,30 +884,45 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(25, 118, 210, 0.3) 0%, transparent 70%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(25, 118, 210, 0.35) 0%, transparent 70%);
             border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
         }
         
         .cta-content {
             position: relative;
             z-index: 2;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
         .cta-section h2 {
-            font-size: clamp(28px, 4vw, 44px);
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.3;
+            margin-bottom: 24px;
+            line-height: 1.2;
         }
         
         .cta-section p {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 36px;
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 44px;
+            line-height: 1.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
         }
         
         /* ============================================
@@ -816,32 +931,31 @@
         .footer {
             background: var(--dark);
             color: rgba(255, 255, 255, 0.7);
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
         }
         
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 48px;
+            margin-bottom: 48px;
         }
         
         .footer-brand .logo {
-            color: var(--white);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
         
         .footer-brand p {
             font-size: 14px;
-            line-height: 1.9;
-            max-width: 320px;
+            line-height: 2;
+            max-width: 340px;
         }
         
         .footer h4 {
             color: var(--white);
             font-size: 16px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         
         .footer ul {
@@ -849,29 +963,29 @@
         }
         
         .footer ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer ul a {
             color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
             font-size: 14px;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
         
         .footer ul a:hover {
             color: var(--accent-light);
+            padding-right: 4px;
         }
         
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 24px;
+            padding-top: 28px;
             text-align: center;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.4);
         }
         
-        .footer-bottom .heart {
+        .heart {
             color: var(--danger);
         }
         
@@ -897,17 +1011,30 @@
         }
         
         .mobile-menu a {
-            padding: 12px 16px;
+            padding: 14px 20px;
             color: var(--dark-3);
-            text-decoration: none;
             font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
         }
         
         .mobile-menu a:hover {
             background: rgba(25, 118, 210, 0.08);
             color: var(--primary);
+        }
+        
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* ============================================
@@ -917,81 +1044,43 @@
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 60px;
             }
             
-            .hero-buttons {
-                justify-content: center;
-            }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-visual { order: -1; }
+            .hero-logo { max-width: 300px; }
+            .hero p { margin: 0 auto 40px; }
             
-            .hero-stats {
-                justify-content: center;
-            }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
             
-            .hero-visual {
-                order: -1;
-            }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
             
-            .hero-logo {
-                max-width: 280px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-8px);
-            }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-10px); }
         }
         
         @media (max-width: 640px) {
-            .section {
-                padding: 60px 0;
-            }
-            
-            .hero {
-                padding: 120px 0 60px;
-            }
+            .section { padding: 70px 0; }
+            .hero { padding: 120px 0 60px; min-height: auto; }
             
             .comparison-table th,
             .comparison-table td {
-                padding: 12px 14px;
+                padding: 14px 16px;
                 font-size: 13px;
             }
             
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-stats { gap: 28px; }
+            .hero-stat .number { font-size: 26px; }
+            .pricing-card { padding: 32px 24px; }
             
-            .hero-stats {
-                gap: 20px;
+            .step-number {
+                right: 50%;
+                transform: translateX(50%);
             }
-        }
-        
-        /* ============================================
-           ANIMATIONS
-           ============================================ */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -1003,7 +1092,7 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon">💼</div>
+                <img src="logo.png" alt="ImanAccount" class="logo-img" onerror="this.style.display='none'">
                 <span class="logo-text">ImanAccount</span>
             </a>
             
@@ -1011,8 +1100,8 @@
                 <a href="#features">ویژگی‌ها</a>
                 <a href="#comparison">مقایسه</a>
                 <a href="#pricing">قیمت‌ها</a>
-                <a href="#testimonials">نظرات</a>
-                <a href="#contact" class="nav-cta">دمو رایگان</a>
+                <a href="#faq">سوالات</a>
+                <a href="#download" class="nav-cta">⬇️ دانلود</a>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -1023,8 +1112,8 @@
         <a href="#features">ویژگی‌ها</a>
         <a href="#comparison">مقایسه</a>
         <a href="#pricing">قیمت‌ها</a>
-        <a href="#testimonials">نظرات</a>
-        <a href="#contact">دمو رایگان</a>
+        <a href="#faq">سوالات متداول</a>
+        <a href="#download">⬇️ دانلود</a>
     </div>
 
     <!-- ============================================
@@ -1045,13 +1134,13 @@
                 </h1>
                 
                 <p>
-                    ImanAccount یه نرم‌افزار حسابداری مدرن، سریع و هوشمنده 
-                    که با AI کار می‌کنه. طراحی شده برای شرکت‌های کوچک و حسابدارهای مستقل.
+                    ImanAccount یه نرم‌افزار حسابداری مدرن، سریع و هوشمنده که با AI کار می‌کنه. طراحی شده برای شرکت‌های کوچک و حسابدارهای مستقل — ۸۰٪ ارزون‌تر از هلو.
                 </p>
                 
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary btn-lg">
-                        🚀 دمو رایگان
+                    <a href="https://github.com/neonpresents01-beep/ImanAccount/releases/latest/download/ImanAccount-Setup-64bit.exe" 
+                       class="btn btn-primary btn-lg">
+                        ⬇️ دانلود رایگان
                     </a>
                     <a href="#features" class="btn btn-outline btn-lg">
                         ✨ ویژگی‌ها
@@ -1075,7 +1164,7 @@
             </div>
             
             <div class="hero-visual">
-                <img src="https://i.ibb.co/Y7tZ3vVK/logo.jpg" alt="ImanAccount Logo" class="hero-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><text y=%22.9em%22 font-size=%22180%22>💼</text></svg>'">
+                <img src="logo.png" alt="ImanAccount Logo" class="hero-logo" onerror="this.style.display='none'">
             </div>
         </div>
     </section>
@@ -1097,55 +1186,93 @@
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🤖</div>
                     <h3>هوش مصنوعی داخلی</h3>
-                    <p>چت‌بات مالی، تحلیل خودکار، پیشنهاد حساب و پیش‌بینی جریان نقدی. بدون نیاز به API خارجی.</p>
+                    <p>چت‌بات مالی، تحلیل خودکار، پیشنهاد حساب و پیش‌بینی جریان نقدی. بدون نیاز به API خارجی و پرداخت هزینه اضافی.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">⚡</div>
                     <h3>سرعت ۵ برابر</h3>
-                    <p>رابط کاربری مدرن و سبک. هر عملیاتی در کمتر از ۱ ثانیه. بدون معطلی.</p>
+                    <p>رابط کاربری مدرن و سبک. هر عملیاتی در کمتر از ۱ ثانیه. بدون معطلی، بدون انتظار.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">📦</div>
                     <h3>انبارداری چندسطحی</h3>
-                    <p>مدیریت چند انبار، انتقال بین انبارها، سریال‌نمبر، بارکد و روش‌های ارزشیابی FIFO/LIFO.</p>
+                    <p>مدیریت چند انبار، انتقال بین انبارها، سریال‌نمبر، بارکد و روش‌های ارزشیابی FIFO و LIFO.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">💰</div>
                     <h3>حقوق و دستمزد کامل</h3>
-                    <p>محاسبه دقیق حقوق، بیمه، مالیات، اضافه‌کاری، شب‌کاری، جمعه‌کاری و بیمه بیکاری.</p>
+                    <p>محاسبه دقیق حقوق، بیمه، مالیات، اضافه‌کاری، شب‌کاری، جمعه‌کاری و بیمه بیکاری طبق قانون کار.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">📊</div>
                     <h3>گزارشات جامع</h3>
-                    <p>تراز آزمایشی، سود و زیان، ترازنامه، جریان نقدی و نسبت‌های مالی. همه با یک کلیک.</p>
+                    <p>تراز آزمایشی، سود و زیان، ترازنامه، جریان نقدی و نسبت‌های مالی. همه با یک کلیک و در کمتر از ۱ دقیقه.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">📄</div>
                     <h3>فاکتور حرفه‌ای</h3>
-                    <p>صدور فاکتور، چاپ PDF با فونت فارسی، خروجی Excel و قالب تصویری قابل تنظیم.</p>
+                    <p>صدور فاکتور، چاپ PDF با فونت فارسی، خروجی Excel و قالب تصویری قابل تنظیم با لوگو شرکت.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🎨</div>
                     <h3>دو تم (روشن/تاریک)</h3>
-                    <p>تغییر آنی بین تم روشن و تاریک. هر چیزی که چشمات راحت‌تره.</p>
+                    <p>تغییر آنی بین تم روشن و تاریک. هر چیزی که چشمات راحت‌تره — بدون نیاز به restart.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🔐</div>
-                    <h3>امنیت بالا</h3>
-                    <p>سیستم لایسنس با RSA 4096، رمزنگاری AES-GCM و رمزهای bcrypt. اطلاعات شما امن.</p>
+                    <h3>امنیت سطح بانکی</h3>
+                    <p>سیستم لایسنس با RSA 4096، رمزنگاری AES-GCM و رمزهای bcrypt. اطلاعات شما کاملاً امن.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🎤</div>
                     <h3>دستیار صوتی</h3>
-                    <p>با صدات حرف بزن، نرم‌افزار جواب می‌ده. تشخیص فرمان صوتی آفلاین فارسی.</p>
+                    <p>با صدات حرف بزن، نرم‌افزار جواب می‌ده. تشخیص فرمان صوتی آفلاین با پشتیبانی کامل فارسی.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS
+         ============================================ -->
+    <section class="section" style="background: var(--off-white);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">🚀 شروع سریع</span>
+                <h2 class="section-title">در ۳ مرحله شروع کن</h2>
+                <p class="section-subtitle">
+                    نصب و راه‌اندازی کمتر از ۵ دقیقه طول می‌کشه
+                </p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">۱</div>
+                    <div class="step-icon">📥</div>
+                    <h3>دانلود و نصب</h3>
+                    <p>فایل Setup رو دانلود کن و نصب کن. فقط ۲ دقیقه طول می‌کشه.</p>
+                </div>
+                
+                <div class="step-card fade-in">
+                    <div class="step-number">۲</div>
+                    <div class="step-icon">⚙️</div>
+                    <h3>راه‌اندازی اولیه</h3>
+                    <p>Wizard ساده، اطلاعات شرکت رو وارد کن. خودش همه چیز رو تنظیم می‌کنه.</p>
+                </div>
+                
+                <div class="step-card fade-in">
+                    <div class="step-number">۳</div>
+                    <div class="step-icon">🎉</div>
+                    <h3>شروع کار</h3>
+                    <p>همین الان می‌تونی فاکتور بزنی، انبار مدیریت کنی و حقوق حساب کنی.</p>
                 </div>
             </div>
         </div>
@@ -1211,7 +1338,7 @@
                         </tr>
                         <tr>
                             <td>خروجی PDF فارسی</td>
-                            <td class="us"><span class="check">✓</span> بله</td>
+                            <td class="us"><span class="check">✓</span> کامل</td>
                             <td><span class="cross">✕</span> ناقص</td>
                         </tr>
                     </tbody>
@@ -1252,7 +1379,10 @@
                         <li class="disabled">حقوق و دستمزد</li>
                         <li class="disabled">گزارشات پیشرفته</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">شروع رایگان</a>
+                    <a href="https://github.com/neonpresents01-beep/ImanAccount/releases/latest/download/ImanAccount-Setup-64bit.exe" 
+                       class="btn btn-outline">
+                        شروع رایگان
+                    </a>
                 </div>
                 
                 <!-- Starter -->
@@ -1273,7 +1403,7 @@
                         <li>AI چت (۵۰ سوال در روز)</li>
                         <li>پشتیبانی تیکت</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">انتخاب پلن</a>
+                    <a href="#download" class="btn btn-outline">انتخاب پلن</a>
                 </div>
                 
                 <!-- Professional -->
@@ -1296,7 +1426,7 @@
                         <li>دستیار صوتی</li>
                         <li>پشتیبانی ۲۴/۷</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary">شروع کن</a>
+                    <a href="#download" class="btn btn-primary">شروع کن</a>
                 </div>
                 
                 <!-- Enterprise -->
@@ -1318,68 +1448,123 @@
                         <li>پشتیبانی اختصاصی</li>
                         <li>SLA تضمین‌شده</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">تماس بگیرید</a>
+                    <a href="#download" class="btn btn-outline">تماس بگیرید</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         TESTIMONIALS
+         FAQ
          ============================================ -->
-    <section class="section" id="testimonials" style="background: var(--off-white);">
+    <section class="section" id="faq" style="background: var(--off-white);">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-badge">💬 نظرات</span>
-                <h2 class="section-title">مشتریان ما چی می‌گن</h2>
+                <span class="section-badge">❓ سوالات متداول</span>
+                <h2 class="section-title">سوالات پرتکرار</h2>
                 <p class="section-subtitle">
-                    داستان‌های واقعی از کسایی که تجربه کردن
+                    اگه سوالی داری، اینجا جوابش هست
                 </p>
             </div>
             
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        «۳ ساعت در روز برای فاکتورها وقت می‌ذاشتم. الان ۳۰ دقیقه. 
-                        واقعاً زندگیم راحت‌تر شده.»
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">ا</div>
-                        <div class="author-info">
-                            <h4>آقای احمدی</h4>
-                            <p>مدیر شرکت بازرگانی</p>
-                        </div>
+            <div class="faq-list fade-in">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ImanAccount چیه و چه فرقی با هلو داره؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ImanAccount یه نرم‌افزار حسابداری مدرن با هوش مصنوعی داخلیه. ۵ برابر سریع‌تر از هلو، با رابط کاربری ۲۰۲۵، و ۸۰٪ ارزون‌تر. علاوه بر حسابداری، انبارداری، حقوق و دستمزد و AI داره.
                     </div>
                 </div>
                 
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        «با هلو کار می‌کردم. پشتیبانی ۲ روز جواب می‌داد. 
-                        اینجا ۵ دقیقه. فرق خیلی زیاده.»
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">م</div>
-                        <div class="author-info">
-                            <h4>مریم رضایی</h4>
-                            <p>حسابدار مستقل</p>
-                        </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>چطور نصب کنم؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        فایل Setup رو دانلود کن، دابل‌کلیک کن، Next بزن. کمتر از ۲ دقیقه نصب میشه. بعد از نصب، Wizard راه‌اندازی اولیه همه چیز رو تنظیم می‌کنه.
                     </div>
                 </div>
                 
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        «AI داخلیش عالیه. سوال می‌پرسم، جواب می‌ده. 
-                        دیگه لازم نیست تو منوها بگردم.»
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">ر</div>
-                        <div class="author-info">
-                            <h4>رضا محمدی</h4>
-                            <p>صاحب فروشگاه</p>
-                        </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>نسخه آزمایشی چقدره؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پولت برمی‌گرده. توی این ۳۰ روز همه قابلیت‌ها رو داری.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>اطلاعات من امنه؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        بله. اطلاعات روی کامپیوتر خودت ذخیره میشه، نه سرور ما. سیستم لایسنس با RSA 4096 و رمزنگاری AES-GCM. رمزها با bcrypt محافظت میشن — سطح بانکی.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>پشتیبانی چطوره؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        پشتیبانی ۲۴/۷ از طریق تلگرام و تلفن. میانگین پاسخ‌دهی زیر ۵ دقیقه. برای کاربران حرفه‌ای و سازمانی، پشتیبانی اختصاصی داریم.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>موبایل هم داره؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        نسخه موبایل در Q1 ۱۴۰۵ منتشر میشه. برای اطلاع از جدیدترین اخبار، تو تلگرام و اینستاگرام ما رو دنبال کن.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>با مودیان کار می‌کنه؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        بله، ماژول مودیان در Q3 ۱۴۰۵ اضافه میشه. الان جداول و ساختار آماده‌ست، فقط اتصال به API مونده.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>چطور از هلو مهاجرت کنم؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        تیم پشتیبانی ما کمکت می‌کنه. داده‌هات از هلو استخراج میشه و به ImanAccount منتقل میشه. این سرویس برای مشتریان حرفه‌ای رایگانه.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>روی ویندوز ۷ کار می‌کنه؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        بله، ما نسخه 32-bit هم داریم که روی Windows 7 SP1 و بالاتر کار می‌کنه. نسخه 64-bit برای ویندوز ۱۰ و ۱۱ پیشنهاد میشه.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>پول برگشت داره؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        بله. اگه توی ۳۰ روز اول راضی نبودی، ۱۰۰٪ پولت برمی‌گرده. بدون سوال، بدون دردسر.
                     </div>
                 </div>
             </div>
@@ -1387,26 +1572,31 @@
     </section>
 
     <!-- ============================================
-         CTA
+         CTA / DOWNLOAD
          ============================================ -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section" id="download">
         <div class="container cta-content">
             <h2 class="fade-in">
                 همین الان شروع کن
                 <br>
-                <span style="background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">رایگان امتحان کن</span>
+                <span class="gradient-text">رایگان امتحان کن</span>
             </h2>
             <p class="fade-in">
-                ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پول برمی‌گرده.
+                ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پولت برمی‌گرده.
             </p>
-            <div class="hero-buttons fade-in" style="justify-content: center;">
-                <a href="tel:09123456789" class="btn btn-primary btn-lg">
-                    📞 تماس با ما
+            <div class="cta-buttons fade-in">
+                <a href="https://github.com/neonpresents01-beep/ImanAccount/releases/latest/download/ImanAccount-Setup-64bit.exe" 
+                   class="btn btn-primary btn-xl">
+                    ⬇️ دانلود (64-bit)
                 </a>
-                <a href="https://t.me/ImanAccount" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">
-                    💬 تلگرام
+                <a href="https://github.com/neonpresents01-beep/ImanAccount/releases/latest/download/ImanAccount-Setup-32bit.exe" 
+                   class="btn btn-outline btn-xl" style="color: white; border-color: rgba(255,255,255,0.4);">
+                    ⬇️ نسخه 32-bit
                 </a>
             </div>
+            <p class="cta-note fade-in">
+                📦 حجم فایل: ~۷۵ MB | ⏱️ زمان نصب: ۲ دقیقه | 🪟 ویندوز ۷ SP1 و بالاتر
+            </p>
         </div>
     </section>
 
@@ -1418,12 +1608,11 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <div class="logo-icon">💼</div>
+                        <img src="logo.png" alt="ImanAccount" class="logo-img" onerror="this.style.display='none'">
                         <span class="logo-text" style="background: linear-gradient(135deg, #42a5f5 0%, #4dd0e1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">ImanAccount</span>
                     </a>
                     <p>
-                        نرم‌افزار حسابداری هوشمند ایرانی، ساخته شده با عشق در ایران. 
-                        هدف ما: حسابداری ساده برای همه.
+                        نرم‌افزار حسابداری هوشمند ایرانی، ساخته شده با عشق در ایران. هدف ما: حسابداری ساده، سریع و ارزان برای همه کسب‌وکارها.
                     </p>
                 </div>
                 
@@ -1433,27 +1622,27 @@
                         <li><a href="#features">ویژگی‌ها</a></li>
                         <li><a href="#pricing">قیمت‌ها</a></li>
                         <li><a href="#comparison">مقایسه</a></li>
-                        <li><a href="#contact">دمو رایگان</a></li>
+                        <li><a href="#download">دانلود</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4>پشتیبانی</h4>
                     <ul>
-                        <li><a href="#contact">تماس با ما</a></li>
+                        <li><a href="#faq">سوالات متداول</a></li>
+                        <li><a href="#download">تماس با ما</a></li>
                         <li><a href="https://t.me/ImanAccount">تلگرام</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">آموزش‌ها</a></li>
+                        <li><a href="#download">آموزش‌ها</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4>شرکت</h4>
                     <ul>
-                        <li><a href="#">درباره ما</a></li>
-                        <li><a href="#">وبلاگ</a></li>
-                        <li><a href="#">تماس</a></li>
-                        <li><a href="#">قوانین</a></li>
+                        <li><a href="#download">درباره ما</a></li>
+                        <li><a href="#download">تماس</a></li>
+                        <li><a href="#download">قوانین</a></li>
+                        <li><a href="#download">حریم خصوصی</a></li>
                     </ul>
                 </div>
             </div>
@@ -1469,7 +1658,7 @@
     </footer>
 
     <!-- ============================================
-         SCRIPT
+         JAVASCRIPT
          ============================================ -->
     <script>
         // Navbar Scroll Effect
@@ -1497,6 +1686,14 @@
             });
         });
         
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+        
         // Fade In on Scroll
         const observerOptions = {
             threshold: 0.1,
@@ -1516,7 +1713,7 @@
             observer.observe(el);
         });
         
-        // Smooth Scroll for anchor links
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1530,8 +1727,9 @@
             });
         });
         
-        console.log('%c💼 ImanAccount', 'font-size: 24px; font-weight: bold; color: #1976D2;');
+        console.log('%c💼 ImanAccount', 'font-size: 28px; font-weight: bold; color: #1976D2;');
         console.log('%cSmart Accounting, Simplified', 'font-size: 14px; color: #00BCD4;');
+        console.log('%cwww.imanai.ir', 'font-size: 12px; color: #64748b;');
     </script>
 
 </body>
