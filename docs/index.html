@@ -51,6 +51,7 @@
             
             --gradient-1: linear-gradient(135deg, #1976D2 0%, #00BCD4 100%);
             --gradient-2: linear-gradient(135deg, #0a1929 0%, #1a2332 100%);
+            --gradient-gold: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
             
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -179,6 +180,16 @@
         .btn-outline:hover {
             background: var(--primary);
             color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+        
+        .btn-success:hover {
+            background: #059669;
             transform: translateY(-3px);
         }
         
@@ -438,6 +449,45 @@
         @keyframes heroFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-25px); }
+        }
+        
+        /* ============================================
+           TRUST BADGES
+           ============================================ */
+        .trust-badges {
+            background: var(--white);
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(25, 118, 210, 0.08);
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            text-align: center;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .trust-item .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .trust-item .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .trust-item .desc {
+            font-size: 13px;
+            color: var(--gray);
         }
         
         /* ============================================
@@ -829,7 +879,7 @@
             display: flex;
             align-items: baseline;
             gap: 8px;
-            margin-bottom: 32px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
         
@@ -851,6 +901,16 @@
         .pricing-price .period {
             font-size: 14px;
             color: var(--gray-light);
+        }
+        
+        .pricing-monthly {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 24px;
+            padding: 8px 12px;
+            background: rgba(25, 118, 210, 0.06);
+            border-radius: var(--radius-sm);
+            display: inline-block;
         }
         
         .pricing-features {
@@ -898,8 +958,181 @@
             color: var(--gray-light);
         }
         
+        .pricing-features li.highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
         .pricing-card .btn {
             width: 100%;
+        }
+        
+        .pricing-note {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px;
+            background: rgba(25, 118, 210, 0.05);
+            border-radius: var(--radius-lg);
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+        
+        .pricing-note strong {
+            color: var(--primary);
+        }
+        
+        /* ============================================
+           PAYMENT BOX
+           ============================================ */
+        .payment-box {
+            background: var(--white);
+            border: 3px solid var(--success);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin-top: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .payment-box h3 {
+            color: var(--success);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .payment-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+        
+        .payment-steps li {
+            counter-increment: step;
+            padding: 16px 0 16px 60px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+        
+        .payment-steps li:last-child {
+            border-bottom: none;
+        }
+        
+        .payment-steps li::before {
+            content: counter(step);
+            position: absolute;
+            right: 0;
+            top: 16px;
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .card-number {
+            background: linear-gradient(135deg, #1a2332 0%, #0a1929 100%);
+            color: white;
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-align: center;
+            margin: 16px 0;
+            box-shadow: var(--shadow-lg);
+            direction: ltr;
+        }
+        
+        .card-info {
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        /* ============================================
+           TESTIMONIALS
+           ============================================ */
+        .testimonials {
+            background: var(--off-white);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(25, 118, 210, 0.08);
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .testimonial-stars {
+            color: #f39c12;
+            font-size: 18px;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        
+        .testimonial-text {
+            color: var(--dark-3);
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-info .name {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 15px;
+        }
+        
+        .testimonial-info .role {
+            font-size: 13px;
+            color: var(--gray);
         }
         
         /* ============================================
@@ -959,8 +1192,69 @@
         }
         
         .faq-item.open .faq-answer {
-            max-height: 300px;
+            max-height: 400px;
             padding: 0 28px 24px;
+        }
+        
+        /* ============================================
+           CONTACT
+           ============================================ */
+        .contact-section {
+            background: var(--white);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .contact-card {
+            background: var(--off-white);
+            padding: 32px 24px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(25, 118, 210, 0.08);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+        
+        .contact-icon {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+        
+        .contact-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .contact-card p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .contact-card a {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+            direction: ltr;
+            display: inline-block;
+        }
+        
+        .contact-card a:hover {
+            color: var(--primary-dark);
         }
         
         /* ============================================
@@ -1182,6 +1476,9 @@
                 right: 50%;
                 transform: translateX(50%);
             }
+            
+            .payment-box { padding: 24px 20px; }
+            .card-number { font-size: 16px; letter-spacing: 2px; }
         }
     </style>
 </head>
@@ -1202,6 +1499,7 @@
                 <a href="#comparison">مقایسه</a>
                 <a href="#pricing">قیمت‌ها</a>
                 <a href="#faq">سوالات</a>
+                <a href="#contact">تماس</a>
                 <a href="#download" class="nav-cta">⬇️ دانلود</a>
             </div>
             
@@ -1213,7 +1511,9 @@
         <a href="#features">ویژگی‌ها</a>
         <a href="#comparison">مقایسه</a>
         <a href="#pricing">قیمت‌ها</a>
+        <a href="#testimonials">نظر مشتریان</a>
         <a href="#faq">سوالات متداول</a>
+        <a href="#contact">تماس با ما</a>
         <a href="#download">⬇️ دانلود</a>
     </div>
 
@@ -1235,15 +1535,15 @@
                 </h1>
                 
                 <p>
-                    ImanAccount یه نرم‌افزار حسابداری مدرن، سریع و هوشمنده که با AI کار می‌کنه. طراحی شده برای شرکت‌های کوچک و حسابدارهای مستقل — ۸۰٪ ارزون‌تر از هلو.
+                    ImanAccount یه نرم‌افزار حسابداری مدرن، سریع و هوشمنده که با AI کار می‌کنه. طراحی شده برای شرکت‌های کوچک و حسابدارهای مستقل — تا ۶۰٪ ارزون‌تر از هلو، با کیفیت بالاتر.
                 </p>
                 
                 <div class="hero-buttons">
                     <a href="#download" class="btn btn-primary btn-lg">
                         ⬇️ دانلود رایگان
                     </a>
-                    <a href="#features" class="btn btn-outline btn-lg">
-                        ✨ ویژگی‌ها
+                    <a href="#pricing" class="btn btn-outline btn-lg">
+                        💰 مشاهده قیمت‌ها
                     </a>
                 </div>
                 
@@ -1257,7 +1557,7 @@
                         <span class="label">سریع‌تر از هلو</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="number">۸۰٪</span>
+                        <span class="number">۶۰٪</span>
                         <span class="label">ارزون‌تر</span>
                     </div>
                 </div>
@@ -1265,6 +1565,36 @@
             
             <div class="hero-visual">
                 <img src="logo.png" alt="ImanAccount Logo" class="hero-logo" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TRUST BADGES
+         ============================================ -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="icon">🇮🇷</div>
+                    <div class="title">ساخت ایران</div>
+                    <div class="desc">۱۰۰٪ داخلی</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon">🔒</div>
+                    <div class="title">امنیت بالا</div>
+                    <div class="desc">RSA 4096 + AES</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon">💾</div>
+                    <div class="title">داده‌های شما</div>
+                    <div class="desc">روی سیستم خودت</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon">🚀</div>
+                    <div class="title">پشتیبانی ۲۴/۷</div>
+                    <div class="desc">پاسخ < ۵ دقیقه</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1307,7 +1637,9 @@
             <div class="download-note fade-in">
                 <strong>🔒 دانلود امن:</strong> همه فایل‌ها از GitHub رسمی منتشر می‌شن.
                 <br>
-                <strong>🔄 همیشه آخرین نسخه:</strong> لینک‌ها به آخرین نسخه اشاره می‌کنن، پس همیشه جدیدترین رو دانلود می‌کنی.
+                <strong>🔄 همیشه آخرین نسخه:</strong> لینک‌ها به آخرین نسخه اشاره می‌کنن.
+                <br>
+                <strong>⏱️ نسخه Trial:</strong> ۳۰ روز رایگان با تمام قابلیت‌ها، بدون کارت بانکی.
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
@@ -1336,7 +1668,7 @@
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🤖</div>
                     <h3>هوش مصنوعی داخلی</h3>
-                    <p>چت‌بات مالی، تحلیل خودکار، پیشنهاد حساب و پیش‌بینی جریان نقدی. بدون نیاز به API خارجی و پرداخت هزینه اضافی.</p>
+                    <p>چت‌بات مالی، تحلیل خودکار، پیشنهاد حساب و پیش‌بینی جریان نقدی. بدون نیاز به API خارجی.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
@@ -1360,7 +1692,7 @@
                 <div class="feature-card fade-in">
                     <div class="feature-icon">📊</div>
                     <h3>گزارشات جامع</h3>
-                    <p>تراز آزمایشی، سود و زیان، ترازنامه، جریان نقدی و نسبت‌های مالی. همه با یک کلیک و در کمتر از ۱ دقیقه.</p>
+                    <p>تراز آزمایشی، سود و زیان، ترازنامه، جریان نقدی و نسبت‌های مالی. همه با یک کلیک.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
@@ -1472,9 +1804,14 @@
                             <td><span class="cross">✕</span> ندارد</td>
                         </tr>
                         <tr>
-                            <td>قیمت سالانه</td>
-                            <td class="us">💵 ۱ میلیون تومان</td>
-                            <td>💸 ۵ تا ۲۰ میلیون</td>
+                            <td>قیمت سالانه (حرفه‌ای)</td>
+                            <td class="us">💵 ۳.۹ میلیون تومان</td>
+                            <td>💸 ۱۲ میلیون تومان</td>
+                        </tr>
+                        <tr>
+                            <td>صرفه‌جویی سالانه</td>
+                            <td class="us">🎉 ۸ میلیون تومان</td>
+                            <td>—</td>
                         </tr>
                         <tr>
                             <td>پشتیبانی</td>
@@ -1506,7 +1843,7 @@
                 <span class="section-badge">💰 قیمت‌ها</span>
                 <h2 class="section-title">پلن مناسب خودت رو انتخاب کن</h2>
                 <p class="section-subtitle">
-                    از رایگان شروع کن، هر وقت خواستی ارتقا بده
+                    از رایگان شروع کن، هر وقت خواستی ارتقا بده — تا ۶۰٪ ارزون‌تر از هلو
                 </p>
             </div>
             
@@ -1520,11 +1857,13 @@
                         <span class="currency">تومان</span>
                         <span class="period">/ همیشه</span>
                     </div>
+                    <div class="pricing-monthly">💡 همیشه رایگان</div>
                     <ul class="pricing-features">
                         <li>۵۰ فاکتور</li>
                         <li>۱۰ کالا</li>
                         <li>۱ انبار</li>
-                        <li>AI چت (۱۰ سوال در روز)</li>
+                        <li>۱ کاربر</li>
+                        <li>AI چت (۵ سوال در روز)</li>
                         <li>پشتیبانی انجمن</li>
                         <li class="disabled">حقوق و دستمزد</li>
                         <li class="disabled">گزارشات پیشرفته</li>
@@ -1537,23 +1876,25 @@
                 
                 <!-- Starter -->
                 <div class="pricing-card fade-in">
-                    <h3>شروع</h3>
-                    <p class="plan-desc">برای کسب‌وکارهای کوچک</p>
+                    <h3>پایه</h3>
+                    <p class="plan-desc">برای کسب‌وکارهای خرد</p>
                     <div class="pricing-price">
-                        <span class="amount">۴۹۰</span>
+                        <span class="amount">۱,۹۰۰</span>
                         <span class="currency">هزار تومان</span>
                         <span class="period">/ سال</span>
                     </div>
+                    <div class="pricing-monthly">💡 یا ۱۹۰,۰۰۰ تومان/ماه</div>
                     <ul class="pricing-features">
-                        <li>۵۰۰ فاکتور</li>
-                        <li>۱۰۰ کالا</li>
-                        <li>۳ انبار</li>
-                        <li>مشتری نامحدود</li>
-                        <li>حسابداری کامل</li>
-                        <li>AI چت (۵۰ سوال در روز)</li>
+                        <li>۲۰۰ فاکتور</li>
+                        <li>۵۰ کالا</li>
+                        <li>۲ انبار</li>
+                        <li>۲ کاربر</li>
+                        <li>AI چت (۲۰ سوال در روز)</li>
+                        <li>گزارشات پایه</li>
                         <li>پشتیبانی تیکت</li>
+                        <li class="highlight">به‌روزرسانی رایگان</li>
                     </ul>
-                    <a href="#download" class="btn btn-outline">انتخاب پلن</a>
+                    <a href="#payment" class="btn btn-outline">خرید پلن پایه</a>
                 </div>
                 
                 <!-- Professional -->
@@ -1562,21 +1903,25 @@
                     <h3>حرفه‌ای</h3>
                     <p class="plan-desc">برای شرکت‌های حرفه‌ای</p>
                     <div class="pricing-price">
-                        <span class="amount">۹۹۰</span>
+                        <span class="amount">۳,۹۰۰</span>
                         <span class="currency">هزار تومان</span>
                         <span class="period">/ سال</span>
                     </div>
+                    <div class="pricing-monthly">💡 یا ۳۹۰,۰۰۰ تومان/ماه</div>
                     <ul class="pricing-features">
                         <li>فاکتور نامحدود</li>
                         <li>کالای نامحدود</li>
                         <li>انبار نامحدود</li>
+                        <li>۵ کاربر</li>
                         <li>حقوق و دستمزد کامل</li>
                         <li>گزارشات پیشرفته</li>
                         <li>AI کامل (نامحدود)</li>
                         <li>دستیار صوتی</li>
+                        <li>خروجی PDF با لوگو</li>
                         <li>پشتیبانی ۲۴/۷</li>
+                        <li class="highlight">آموزش آنلاین (۱ جلسه)</li>
                     </ul>
-                    <a href="#download" class="btn btn-primary">شروع کن</a>
+                    <a href="#payment" class="btn btn-primary">شروع کن</a>
                 </div>
                 
                 <!-- Enterprise -->
@@ -1584,21 +1929,119 @@
                     <h3>سازمانی</h3>
                     <p class="plan-desc">برای سازمان‌های بزرگ</p>
                     <div class="pricing-price">
-                        <span class="amount">۲,۹۹۰</span>
+                        <span class="amount">۹,۹۰۰</span>
                         <span class="currency">هزار تومان</span>
                         <span class="period">/ سال</span>
                     </div>
+                    <div class="pricing-monthly">💡 یا ۹۹۰,۰۰۰ تومان/ماه</div>
                     <ul class="pricing-features">
                         <li>همه چیز حرفه‌ای +</li>
-                        <li>۵ کاربر</li>
-                        <li>۳ شرکت</li>
+                        <li>۲۰ کاربر</li>
+                        <li>۵ شرکت</li>
                         <li>API اختصاصی</li>
                         <li>مدیر حساب اختصاصی</li>
-                        <li>آموزش تیم</li>
+                        <li>آموزش تیم (۵ جلسه)</li>
                         <li>پشتیبانی اختصاصی</li>
                         <li>SLA تضمین‌شده</li>
+                        <li class="highlight">شخصی‌سازی سفارشی</li>
                     </ul>
-                    <a href="#download" class="btn btn-outline">تماس بگیرید</a>
+                    <a href="#contact" class="btn btn-outline">تماس بگیرید</a>
+                </div>
+            </div>
+            
+            <!-- Payment Box -->
+            <div class="payment-box fade-in" id="payment">
+                <h3>💳 مراحل خرید</h3>
+                <ol class="payment-steps">
+                    <li>
+                        مبلغ پلن انتخابی رو به کارت زیر واریز کن:
+                        <div class="card-number">6104-3379-XXXX-XXXX</div>
+                        <div class="card-info">به نام: سینا بایمان</div>
+                    </li>
+                    <li>
+                        رسید پرداخت رو برای ما بفرست:
+                        <br>
+                        📱 <strong>روبیکا:</strong> <a href="https://rubika.ir/ImanAI2027" target="_blank" style="color: var(--primary);">rubika.ir/ImanAI2027</a>
+                        <br>
+                        📞 <strong>تلفن:</strong> <a href="tel:09937060447" style="color: var(--primary); direction: ltr; display: inline-block;">09937060447</a>
+                        <br>
+                        📧 <strong>ایمیل:</strong> <a href="mailto:info@imanai.ir" style="color: var(--primary);">info@imanai.ir</a>
+                    </li>
+                    <li>
+                        HWID سیستمت رو برامون بفرست (تو نرم‌افزار، دکمه «مشاهده HWID»)
+                    </li>
+                    <li>
+                        لایسنس تا <strong>۵ دقیقه</strong> برات صادر و ارسال می‌شه! 🎉
+                    </li>
+                </ol>
+                
+                <div style="margin-top: 24px; padding: 16px; background: #fef3c7; border-radius: 8px; font-size: 14px; color: #92400e; text-align: center;">
+                    <strong>🎁 تخفیف ویژه:</strong> ۵۰٪ تخفیف دانشجویی | ۱۵٪ تخفیف معرفی دوست
+                </div>
+            </div>
+            
+            <div class="pricing-note fade-in">
+                💰 <strong>تضمین بازگشت پول:</strong> ۳۰ روز اول، بدون سوال پولت برمی‌گرده
+                <br>
+                🎓 <strong>تخفیف دانشجویی:</strong> ۵۰٪ تخفیف با کارت دانشجویی
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS
+         ============================================ -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">💬 نظر مشتریان</span>
+                <h2 class="section-title">کاربران چی می‌گن؟</h2>
+                <p class="section-subtitle">
+                    تجربه‌ی واقعی کاربرانی که با ImanAccount کار می‌کنن
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «واقعاً از هلو سریع‌تره. من ۳ سال با هلو کار کردم، الان ۲ ماهه ImanAccount دارم و دیگه برنمی‌گردم. سرعتش فوق‌العاده‌ست.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">م</div>
+                        <div class="testimonial-info">
+                            <div class="name">محمد رضایی</div>
+                            <div class="role">حسابدار، تهران</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «پشتیبانی‌شون عالیه. یه سوال داشتم، ۵ دقیقه‌ای جواب دادن. تو هلو ۲ روز طول می‌کشید. این تفاوت رو حس می‌کنی.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ف</div>
+                        <div class="testimonial-info">
+                            <div class="name">فاطمه احمدی</div>
+                            <div class="role">مدیر مالی، اصفهان</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        «قابلیت AI واقعاً کارمو راحت کرده. پیشنهاد حساب می‌ده، تحلیل مالی می‌کنه. این تو نرم‌افزارهای دیگه نیست.»
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ع</div>
+                        <div class="testimonial-info">
+                            <div class="name">علی کریمی</div>
+                            <div class="role">حسابدار مستقل، شیراز</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1624,7 +2067,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        ImanAccount یه نرم‌افزار حسابداری مدرن با هوش مصنوعی داخلیه. ۵ برابر سریع‌تر از هلو، با رابط کاربری ۲۰۲۵، و ۸۰٪ ارزون‌تر. علاوه بر حسابداری، انبارداری، حقوق و دستمزد و AI داره.
+                        ImanAccount یه نرم‌افزار حسابداری مدرن با هوش مصنوعی داخلیه. ۵ برابر سریع‌تر از هلو، با رابط کاربری ۲۰۲۵، و تا ۶۰٪ ارزون‌تر. علاوه بر حسابداری، انبارداری، حقوق و دستمزد و AI داره.
                     </div>
                 </div>
                 
@@ -1644,7 +2087,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پولت برمی‌گرده. توی این ۳۰ روز همه قابلیت‌ها رو داری.
+                        بعد از نصب، ۳۰ روز رایگان با تمام قابلیت‌ها (بدون محدودیت)، بدون کارت بانکی و بدون تعهد. اگه راضی نبودی، پولت برمی‌گرده.
                     </div>
                 </div>
                 
@@ -1664,7 +2107,27 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        پشتیبانی ۲۴/۷ از طریق تلگرام و تلفن. میانگین پاسخ‌دهی زیر ۵ دقیقه. برای کاربران حرفه‌ای و سازمانی، پشتیبانی اختصاصی داریم.
+                        پشتیبانی ۲۴/۷ از طریق روبیکا و تلفن. میانگین پاسخ‌دهی زیر ۵ دقیقه. برای کاربران حرفه‌ای و سازمانی، پشتیبانی اختصاصی داریم.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>چطور پلن بخرم؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        مبلغ رو به کارت اعلام‌شده واریز کن، رسید رو تو روبیکا (@ImanAI2027) برامون بفرست، HWID سیستمت رو بفرست. لایسنس تا ۵ دقیقه برات صادر و ارسال میشه.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>تخفیف دانشجویی چیه؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        اگه دانشجوی حسابداری یا رشته‌های مرتبط هستی، با ارسال کارت دانشجویی، ۵۰٪ تخفیف روی همه پلن‌ها می‌گیری. کافیه به پشتیبانی پیام بدی.
                     </div>
                 </div>
                 
@@ -1674,7 +2137,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        نسخه موبایل در Q1 ۱۴۰۵ منتشر میشه. برای اطلاع از جدیدترین اخبار، تو تلگرام و اینستاگرام ما رو دنبال کن.
+                        نسخه موبایل در Q1 ۱۴۰۵ منتشر میشه. برای اطلاع از جدیدترین اخبار، کانال روبیکا ما رو دنبال کن.
                     </div>
                 </div>
                 
@@ -1722,6 +2185,44 @@
     </section>
 
     <!-- ============================================
+         CONTACT
+         ============================================ -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">📞 تماس با ما</span>
+                <h2 class="section-title">با ما در ارتباط باش</h2>
+                <p class="section-subtitle">
+                    برای مشاوره، پشتیبانی یا خرید سازمانی با ما تماس بگیر
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📱</div>
+                    <h3>روبیکا</h3>
+                    <p>سریع‌ترین راه ارتباطی</p>
+                    <a href="https://rubika.ir/ImanAI2027" target="_blank">rubika.ir/ImanAI2027</a>
+                </div>
+                
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📞</div>
+                    <h3>تلفن</h3>
+                    <p>تماس مستقیم</p>
+                    <a href="tel:09937060447">0993-706-0447</a>
+                </div>
+                
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3>ایمیل</h3>
+                    <p>برای مکاتبات رسمی</p>
+                    <a href="mailto:info@imanai.ir">info@imanai.ir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
          CTA
          ============================================ -->
     <section class="cta-section">
@@ -1729,10 +2230,10 @@
             <h2 class="fade-in">
                 همین الان شروع کن
                 <br>
-                <span class="gradient-text">رایگان امتحان کن</span>
+                <span class="gradient-text">۳۰ روز رایگان امتحان کن</span>
             </h2>
             <p class="fade-in">
-                ۳۰ روز رایگان، بدون کارت اعتباری، بدون تعهد. اگه راضی نبودی، پولت برمی‌گرده.
+                بدون کارت بانکی، بدون تعهد. تمام قابلیت‌ها، ۳۰ روز رایگان. اگه راضی نبودی، پولت برمی‌گرده.
             </p>
             <div class="cta-buttons fade-in">
                 <a href="https://github.com/neonpresents01-beep/ImanAccount/releases/latest/download/ImanAccount-Setup-64bit.exe" 
@@ -1780,19 +2281,19 @@
                     <h4>پشتیبانی</h4>
                     <ul>
                         <li><a href="#faq">سوالات متداول</a></li>
-                        <li><a href="#download">تماس با ما</a></li>
-                        <li><a href="https://t.me/ImanAccount">تلگرام</a></li>
-                        <li><a href="#download">آموزش‌ها</a></li>
+                        <li><a href="#contact">تماس با ما</a></li>
+                        <li><a href="https://rubika.ir/ImanAI2027" target="_blank">روبیکا</a></li>
+                        <li><a href="mailto:info@imanai.ir">ایمیل</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4>شرکت</h4>
                     <ul>
-                        <li><a href="#download">درباره ما</a></li>
-                        <li><a href="#download">تماس</a></li>
-                        <li><a href="#download">قوانین</a></li>
-                        <li><a href="#download">حریم خصوصی</a></li>
+                        <li><a href="#contact">درباره ما</a></li>
+                        <li><a href="#contact">تماس</a></li>
+                        <li><a href="#contact">قوانین</a></li>
+                        <li><a href="#contact">حریم خصوصی</a></li>
                     </ul>
                 </div>
             </div>
@@ -1840,6 +2341,11 @@
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('open');
+                    }
+                });
                 item.classList.toggle('open');
             });
         });
@@ -1883,4 +2389,4 @@
     </script>
 
 </body>
-</html>
+        </html>
